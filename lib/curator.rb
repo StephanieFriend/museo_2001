@@ -38,4 +38,12 @@ class Curator
       artist.name
     end.uniq
   end
+
+  def photographs_taken_by_artist_from(country)
+    photographs_by_artist.map do |artist, photo|
+      if artist.country == country
+        photo
+      end
+    end.flatten.compact
+  end
 end
