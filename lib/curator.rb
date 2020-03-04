@@ -28,6 +28,14 @@ class Curator
   end
 
   def artists_with_multiple_photographs
-
+    artists_and_photos = photographs_by_artist.find_all do |artist, photo|
+      photo.length > 1
+    end.flatten
+    multi_artists = artists_and_photos.map do |multi_artist|
+      find_artist_by_id(multi_artist.id)
+    end.compact
+    multi_artists.map do |artist|
+      artist.name
+    end.uniq
   end
 end

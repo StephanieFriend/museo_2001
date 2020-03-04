@@ -178,6 +178,12 @@ class CuratorTest < Minitest::Test
                                  artist_id: "3",
                                  year: "1927"
                              })
+    photo_5 = Photograph.new({
+                                 id: "5",
+                                 name: "Blah",
+                                 artist_id: "2",
+                                 year: "1923"
+                             })
     artist_1 = Artist.new({
                               id: "1",
                               name: "Henri Cartier-Bresson",
@@ -209,6 +215,10 @@ class CuratorTest < Minitest::Test
     curator.add_photograph(photo_4)
 
     assert_equal ["Diane Arbus"], curator.artists_with_multiple_photographs
+
+    curator.add_photograph(photo_5)
+
+    assert_equal ["Ansel Adams", "Diane Arbus"], curator.artists_with_multiple_photographs
   end
 end
 
