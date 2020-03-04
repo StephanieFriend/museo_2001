@@ -1,3 +1,5 @@
+require 'csv'
+
 class Curator
 
   attr_reader :photographs, :artists
@@ -45,5 +47,10 @@ class Curator
         photo
       end
     end.flatten.compact
+  end
+
+  def load_photographs(file_path)
+    # File.open(file_path, "r")
+    # CSV.read(file_path, headers: true, header_converters: :symbol)
   end
 end

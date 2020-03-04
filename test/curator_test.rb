@@ -6,6 +6,12 @@ require './lib/curator'
 
 class CuratorTest < Minitest::Test
 
+  def setup
+    curator = Curator.new
+    photo_file_path = './data/photographs.csv'
+    @photo_csv = curator.load_photographs(photo_file_path)
+  end
+
   def test_it_exists
     curator = Curator.new
 
@@ -280,5 +286,29 @@ class CuratorTest < Minitest::Test
     assert_equal [photo_2, photo_3, photo_4], curator.photographs_taken_by_artist_from("United States")
     assert_equal [],  curator.photographs_taken_by_artist_from("Argentina")
   end
+
+  # def test_it_can_load_csv_photographs
+  #   curator = Curator.new
+  #
+  #
+  # end
 end
 
+
+# pry(main)> require './lib/curator'
+#
+# pry(main)> curator = Curator.new
+# #=> #<Curator:0x00007fd98685b2b0...>
+#
+# pry(main)> curator.load_photographs('./data/photographs.csv')
+#
+# pry(main)> curator.load_artists('./data/artists.csv')
+#
+# pry(main)> curator.photographs_taken_between(1950..1965)
+# #=> [#<Photograph:0x00007fd986254740...>, #<Photograph:0x00007fd986254678...>]
+#
+# pry(main)> diane_arbus = curator.find_artist_by_id("3")
+#
+# pry(main)> curator.artists_photographs_by_age(diane_arbus)
+# => {44=>"Identical Twins, Roselle, New Jersey", 39=>"Child with Toy Hand Grenade in Central Park"}
+# ```
